@@ -10,8 +10,7 @@
 
 ## Introduction
 
-## Binary analysis
-
+## Binaries static analysis
 
 
 ## I2C
@@ -50,6 +49,6 @@ To discover the baudrate we picked the smallest period (104us) that we found and
 
 We were not finding anything until we pressed reset button which revealed the following string.
 
-<img src="./docs/images/07_RS232_reset.png">
+<img src="./docs/images/08_RS232_reset.png">
 
 Allowing us to guarantee that the configuration is set up correctly and to continue exploring.
