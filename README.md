@@ -52,3 +52,23 @@ We were not finding anything until we pressed reset button which revealed the fo
 <img src="./docs/images/08_RS232_reset.png">
 
 Allowing us to guarantee that the configuration is set up correctly and to continue exploring.
+
+
+## SPI
+We also analyzed SPI protocol, at first tries we were not able to find anything relevant because the frequency of capture was set too low. After checking the memory chip documentation (MICROCHIP 25LC040A), we found that the frequency was in the order of MHZ so we did a capture with 24Mhz. After that the capture seemed to be correct because the clock signal was stable.
+
+<img src="./docs/images/11_SPI_frequency.png">
+
+To identify the clock signal, we choose the signal that had a duty cycle of 50% and behaved like a clock.
+The clock period of the clock is ~2.7us which results in a frequency of ~369kHz.
+
+The logic to identify chip select signal was to find the signal that was up when clock was disabled and was down when other signals were changing.
+
+The last two signals MOSI and MISO were harder to identify, but we found two conclusions to support our argument.
+
+1. Due the protocl being a master slave one, a communication should start by having master requesting data to the slave (memory chip). Which means that the first signal that changes should be the master (MOSI). In our case is the channel 3.
+
+2. The CHIP [documentation](https://ww1.microchip.com/downloads/aemDocuments/documents/MPD/ProductDocuments/DataSheets/25AA040A-25LC040A4-Kbit-SPI-Bus-Serial-EEPROM-20001827J.pdf) reveals the instruction set and how a write sequence is done (in section 3.3). Reading how write works, we found that MOSI signal must be the channel 3 because we found a write sequence in this channel, it should start with 0x06 and then setting chip select to high and low, after that the master sends 0x02 and the address and value that should be written memory with additional two bytes. This sequence was not found in the remaining channels.
+
+<img src="./docs/images/12_CHIP_IS.png">
+<img src="./docs/images/13_SPI_WRITE.png">
