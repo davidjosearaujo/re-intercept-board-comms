@@ -72,3 +72,21 @@ The last two signals MOSI and MISO were harder to identify, but we found two con
 
 <img src="./docs/images/12_CHIP_IS.png">
 <img src="./docs/images/13_SPI_WRITE.png">
+
+The start capture was decoded according with the chip documentation the following operations are done.
+
+```
+1. READ SR 0x00
+2. READ 0x45 0x40
+3. READ 0x46 0x20
+4. WRITE 0x22 0x1E
+5. READ SR 0x03 (~20 times)
+6. WRITE 0x23 0X1E
+7. READ SR 0x03 (~20 times)
+8. WRITE 0x46 0x22
+```
+
+As we can see it starts by reading address 0x45 and 0x46. And then the value 0x1E is written in 0x22 and 0x23 which seems to be the temperature values.
+After value 0x22 is set in 0x46.
+
+In the middle of these operations some read status register operations are done. The value 0x03 os status register means that WIP (busy write) and WEL (Write Enable Latch) bits are active, these instructions are repeated around ~20 times because the system is waiting for the write operation to be done in order to make another write.
