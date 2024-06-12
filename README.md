@@ -90,3 +90,21 @@ As we can see it starts by reading address 0x45 and 0x46. And then the value 0x1
 After value 0x22 is set in 0x46.
 
 In the middle of these operations some read status register operations are done. The value 0x03 os status register means that WIP (busy write) and WEL (Write Enable Latch) bits are active, these instructions are repeated around ~20 times because the system is waiting for the write operation to be done in order to make another write.
+
+## OC1 and OC2 outputs
+We also captured OC1 and OC2 outputs.
+
+The following image is a capture of OC1 when temperature was 40, 50 and 60.
+
+<img src="./docs/images/14_OC1.png">
+
+We did another capture for OC2 with same characteristics, temperature of 40, 50 and 60.
+
+<img src="./docs/images/15_OC2.png">
+
+As we can see, as the temperature increases, the duty cycle of the signal increases.
+
+For OC1 signal the duty cycle is ~43% when temperature is 40 and ~81% when temperature is 50.
+
+For OC2 signal, it's almost close from values captured in OC1. ~43% when temperature is 40 and 86 when it's 50.
+
