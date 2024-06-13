@@ -108,3 +108,6 @@ For OC1 signal the duty cycle is ~43% when temperature is 40 and ~81% when tempe
 
 For OC2 signal, it's almost close from values captured in OC1. ~43% when temperature is 40 and 86 when it's 50.
 
+We did multiple captures to confirm that the duty cycle reaches 100% when temperature is around 60.
+
+The behavior of this signal is similar to a PWM (Pulse Width Modulation) signal, where the duty cycle increases as the temperature rises. This means the temperature is regulated by this signal. To increase the temperature, the duty cycle must be increased, which in turn raises the average power.
