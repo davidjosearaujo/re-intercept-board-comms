@@ -12,6 +12,18 @@
 
 ## Binaries static analysis
 
+We used `strings` to find some strings in the binary. 
+
+<img src="./docs/images/16_strings.png">
+
+Although it does not reveal much, we can deduce that the system uses the I2C protocol. It appears to have keys for controlling the temperature and features for displaying temperatures in text format, among other functions.
+
+We decided to do some static analysis of the binary elf file. We found some important functions such as the one that is called when reset is done.
+
+Our main objective with deobfuscation was to associate some parts of the binary with his behaviour.
+
+Deobfuscated code is present in the /guidra/1233412.gpr file.
+
 
 ## I2C
 We started by analyzing I2C communications in both pins 5 and 6.
