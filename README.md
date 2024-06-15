@@ -24,6 +24,10 @@ Our main objective with deobfuscation was to associate some parts of the binary 
 
 Deobfuscated code is present in the /guidra/1233412.gpr file.
 
+As an example the following code is responsible for changing temperature with the keyboard.
+
+<img src="./docs/images/09_handle_temperature_change_via_keyboard.png">
+
 
 ## I2C
 We started by analyzing I2C communications in both pins 5 and 6.
