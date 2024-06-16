@@ -1,8 +1,8 @@
 # re-intercept-board-comms
 
 ## Authors
-- Tiago Silvestre
-- David Araújo
+- Tiago Silvestre - 103554
+- David Araújo - 93444
 
 ## Tools used
 - Pulseview
